@@ -1,7 +1,7 @@
 <script setup lang="ts">
   // @ts-ignore
   import { uploadFile } from "../../../utils/uploader.ts";
-  import {onMounted} from "vue";
+  import { onMounted } from "vue";
   import { ElMessage } from 'element-plus'
   // 上传文件
   // const uploadImage = (files: Array<File>) => {

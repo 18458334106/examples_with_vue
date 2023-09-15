@@ -14,11 +14,11 @@ const routes = [
           name:'SassStarSky',
           component: ()=>import('@/views/components/sassStarSky.vue'),
         },
-        {
-          path:'particles',
-          name:'Particles',
-          component: ()=>import('@/views/components/ParticlesView/particles.vue'),
-        },
+        // {
+        //   path:'particles',
+        //   name:'Particles',
+        //   component: ()=>import('@/views/components/ParticlesView/particles.vue'),
+        // },
         {
           path:'upload',
           name:'Upload',
