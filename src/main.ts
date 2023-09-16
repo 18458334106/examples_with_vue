@@ -4,6 +4,8 @@ import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import Particles from 'particles.vue3'
+import './permission.ts'
+
 createApp(App)
     .use(router)
     .use(ElementPlus)
