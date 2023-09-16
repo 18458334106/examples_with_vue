@@ -50,10 +50,12 @@
             }
             span{
                 position: absolute;
-                bottom: 1rem;
-                left: 1rem;
+                bottom: .5rem;
+                left: .5rem;
                 color: white;
+                font-size: .75rem;
             }
+            &:hover{ transform: scale(1.2);transition: all .3s; }
         }
     }
 </style>

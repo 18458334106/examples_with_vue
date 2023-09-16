@@ -1,28 +1,23 @@
-<script setup lang="ts">
-  import { options } from "./options.ts";
-  import { loadFull } from "tsparticles"
-  // @ts-ignore
-  const particlesInit = async (engine:object) => {
-    // @ts-ignore
-    await loadFull(engine)
-  }
-  // @ts-ignore
-  const particlesLoaded = async (container) => {
-    // @ts-ignore
-    console.log('Particles container loaded', container)
-  }
-</script>
-
 <template>
-  <div class="all">
-    <Particles id="tsparticles" class="login-particles" :particlesInit="particlesInit"
-               :particlesLoaded="particlesLoaded" :options="options" />
+  <div class="container">
+    <Particles
+        id="tsparticles"
+        :particlesInit="particlesInit"
+        :particlesLoaded="particlesLoaded"
+        :options="options"
+      />
   </div>
 </template>
+<script lang="ts" setup>
+  import { options } from './options';
+  import type { Engine } from "tsparticles-engine";
+  import { loadFull } from "tsparticles";
 
-<style scoped lang="scss">
-  .all{
-    width: 100%;
-    height: 100%;
-  }
-</style>
+  const particlesInit = async (engine: Engine) => {
+    await loadFull(engine);
+  };
+ 
+  const particlesLoaded = async (container: any) => {
+    console.log("Particles container loaded", container);
+  };
+</script>

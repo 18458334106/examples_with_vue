@@ -1,7 +1,7 @@
 export const options:any = {
     background: {
         color: {
-            value: '#000'
+            value: '#999'
         }
     },
     fpsLimit: 120,
