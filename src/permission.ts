@@ -3,6 +3,7 @@ import { getToken } from '@/utils/auth'
 import userStore from './store/user'
 import { ElMessage } from 'element-plus'
 import { storeToRefs } from 'pinia'
+import { log } from 'console'
 
 const whiteList = ['/home','/about']
 router.beforeEach(async(to, from, next) => {
@@ -14,7 +15,7 @@ router.beforeEach(async(to, from, next) => {
         next({ path: '/' })
       } else {
         const { name } = storeToRefs(store)
-        const hasGetUserInfo = name
+        const hasGetUserInfo = name.value
         if (hasGetUserInfo) {
           next()
         } else {
