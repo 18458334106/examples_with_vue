@@ -3,7 +3,6 @@ import { getToken } from '@/utils/auth'
 import userStore from './store/user'
 import { ElMessage } from 'element-plus'
 import { storeToRefs } from 'pinia'
-import { log } from 'console'
 
 const whiteList = ['/home','/about']
 router.beforeEach(async(to, from, next) => {
