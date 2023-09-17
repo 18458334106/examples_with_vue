@@ -18,8 +18,8 @@
     .container {
         background: #23262d;
         .content{
-            width: 400px;
-            height: 400px;
+            width: 25rem;
+            height: 25rem;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr;

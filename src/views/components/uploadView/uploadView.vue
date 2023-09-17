@@ -65,8 +65,8 @@
     width: 100%;
     height: 100%;
     .icon{
-      width: 48px;
-      height: 48px; 
+      width: 3rem;
+      height: 3rem; 
       cursor: pointer;
     }
   }
