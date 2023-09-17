@@ -1,8 +1,8 @@
 {
-    "redirects": [
-      {
-        "source": "/(.*)",
-        "destination": "https://examples-with-vue.vercel.app/"
-      }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/proxy/:match*",
+      "destination": "https://examples-with-vue.vercel.app/:match*"
+    }
+  ]
+}
