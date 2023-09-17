@@ -15,8 +15,8 @@ const userStore = defineStore('userStore',{
       return new Promise((resolve, reject) => {
         login(data).then(res => {
           this.token = res
-          setToken(res)
-          resolve(null)
+          setToken(res.token)
+          resolve(res)
         }).catch(error => {
           reject(error)
         })
