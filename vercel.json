@@ -1,0 +1,6 @@
+{
+    "redirects": [
+      { "source": "/old", "destination": "/new", "statusCode": 301 }
+    ]
+  }
+  
