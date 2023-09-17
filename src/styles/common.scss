@@ -28,3 +28,8 @@
 .TextCenter{
     text-align: center;
 }
+.ellipsis{
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

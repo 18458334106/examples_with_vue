@@ -3,7 +3,7 @@
         <div class="examples flexRow">
             <div class="example" v-for="item in examples" @click="jumpTo(item.path)">
                 <img src="../../assets/SassStarSky.jpg" alt="" srcset="">
-                <span>{{ item.name }}</span>
+                <span class="ellipsis">{{ item.name }}</span>
             </div>
         </div>
     </div>
@@ -54,6 +54,7 @@
                 left: .5rem;
                 color: white;
                 font-size: .75rem;
+                width: calc(100% - 1rem);
             }
             &:hover{ transform: scale(1.2);transition: all .3s; }
         }

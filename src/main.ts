@@ -18,3 +18,11 @@ createApp(App)
     .use(Particles)
     .use(createPinia())
     .mount('#app')
+
+const setFontSize = () => {
+    let doc = document.documentElement
+    doc.style.fontSize = doc.clientWidth / 75 + 'px'
+}
+
+setFontSize()
+window.onresize = setFontSize;

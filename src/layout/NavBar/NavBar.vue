@@ -80,6 +80,7 @@
         a{
             width: 8em;
             height: 100%;
+            font-size: 1rem;
             color: black;
             text-decoration: none;
         }
