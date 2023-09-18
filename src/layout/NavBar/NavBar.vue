@@ -8,23 +8,26 @@
             <span v-else> {{ name }} </span>
         </div>
 
-        <div class="loginView flexRowCenterAll" v-if="showLogin" @click.self="showLogin = false">
-            <div class="loginMain flexColumnCenterAll">
-                <h1 class="loginTitle">Login In</h1>
-                <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef">
-                    <el-form-item prop="username">
-                        <el-input v-model="loginForm.username" placeholder="请输入用户名" size="large" :prefix-icon="User"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="password">
-                        <el-input v-model="loginForm.password" placeholder="请输入密码" size="large" :prefix-icon="Lock"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="login(loginFormRef)" size="large">登陆</el-button>
-                    </el-form-item>
-                </el-form>
-                <span class="defaultAuth">用户名：admin 密码：123456</span>
+        <transition name="el-fade-in-linear">
+            <div class="loginView flexRowCenterAll" v-if="showLogin" @click.self="showLogin = false">
+                <div class="loginMain flexColumnCenterAll">
+                    <h1 class="loginTitle">Login In</h1>
+                    <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef">
+                        <el-form-item prop="username">
+                            <el-input v-model="loginForm.username" placeholder="请输入用户名" size="large" :prefix-icon="User"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <el-input v-model="loginForm.password" placeholder="请输入密码" size="large" :prefix-icon="Lock"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="login(loginFormRef)" size="large">登陆</el-button>
+                        </el-form-item>
+                    </el-form>
+                    <span class="defaultAuth">用户名：admin 密码：123456</span>
+                </div>
             </div>
-        </div>
+        </transition>
+
     </div>
 </template>
 
@@ -86,6 +89,7 @@
         }
         .router-link-active{
             color: red;
+            transition: all .3s;
         }
         .rightMenu{
             position: absolute;
