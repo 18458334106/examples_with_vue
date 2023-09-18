@@ -21,7 +21,8 @@ createApp(App)
 
 const setFontSize = () => {
     let doc = document.documentElement
-    doc.style.fontSize = doc.clientWidth / 75 + 'px'
+    let fontSize = doc.clientWidth / 120 > 12 ? doc.clientWidth / 120 : 12
+    doc.style.fontSize = fontSize + 'px'
 }
 
 setFontSize()

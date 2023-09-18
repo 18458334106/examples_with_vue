@@ -111,6 +111,7 @@
                 .el-form{
                     width: 100% !important;
                     height: 100% !important;
+                    padding: 0 2rem;
                     .el-form-item{
                         width: 100% !important;
                         .el-input{ width: 100% !important; }
