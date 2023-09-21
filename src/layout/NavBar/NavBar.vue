@@ -14,10 +14,10 @@
                     <h1 class="loginTitle">Login In</h1>
                     <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef">
                         <el-form-item prop="username">
-                            <el-input v-model="loginForm.username" placeholder="请输入用户名" size="large" :prefix-icon="User"></el-input>
+                            <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" size="large" :prefix-icon="User"></el-input>
                         </el-form-item>
                         <el-form-item prop="password">
-                            <el-input v-model="loginForm.password" placeholder="请输入密码" size="large" :prefix-icon="Lock"></el-input>
+                            <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" size="large" :prefix-icon="Lock"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="login(loginFormRef)" size="large">登陆</el-button>
