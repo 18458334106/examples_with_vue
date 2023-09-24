@@ -1,8 +1,10 @@
 <template>
     <div class="AppMain">
-        <transition name="el-fade-in-linear">
-            <router-view />
-        </transition>
+        <router-view v-slot="{ Component }">
+            <transition name="el-fade-in-linear">
+                <component :is="Component" />
+            </transition>
+        </router-view>
     </div>
 </template>
 
