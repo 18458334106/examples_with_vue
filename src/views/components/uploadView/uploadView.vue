@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script setup>
   // @ts-ignore
-  import { uploadFile } from "../../../utils/uploader.ts";
+  // import { uploadFile } from "../../../utils/uploader.ts";
   import { onMounted } from "vue";
   import { ElMessage } from 'element-plus'
   // 上传文件
-  // const uploadImage = (files: Array<File>) => {
+  // const uploadImage = (files) => {
   //   if (files.length > 0) {
   //     uploadFile(files[0]).subscribe({
   //       next: (result) => {
@@ -12,7 +12,7 @@
   //       },
   //       error: (err) => {
   //         console.log(err)
-  //
+  
   //       },
   //       complete: (e) => {
   //         console.log(e)
@@ -48,6 +48,8 @@
           />
         </svg>
         <!-- <input
+          id="file-upload"
+          style="display: none;"
           name="cover"
           type="file"
           accept="image/png,image/jpeg,image/jpg"
