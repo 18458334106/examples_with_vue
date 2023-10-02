@@ -1,25 +1,25 @@
 <script setup>
   // @ts-ignore
-  // import { uploadFile } from "../../../utils/uploader.ts";
+  import { uploadFile } from "../../../utils/uploader.ts";
   import { onMounted } from "vue";
   import { ElMessage } from 'element-plus'
   // 上传文件
-  // const uploadImage = (files) => {
-  //   if (files.length > 0) {
-  //     uploadFile(files[0]).subscribe({
-  //       next: (result) => {
-  //         console.log(result)
-  //       },
-  //       error: (err) => {
-  //         console.log(err)
+  const uploadImage = (files) => {
+    if (files.length > 0) {
+      uploadFile(files[0]).subscribe({
+        next: (result) => {
+          console.log(result)
+        },
+        error: (err) => {
+          console.log(err)
   
-  //       },
-  //       complete: (e) => {
-  //         console.log(e)
-  //       },
-  //     });
-  //   }
-  // }
+        },
+        complete: (e) => {
+          console.log(e)
+        },
+      });
+    }
+  }
 
   onMounted(()=>{
     ElMessage.error('由于域名问题 暂未开放')
@@ -47,14 +47,14 @@
               stroke-linejoin="round"
           />
         </svg>
-        <!-- <input
+        <input
           id="file-upload"
           style="display: none;"
           name="cover"
           type="file"
           accept="image/png,image/jpeg,image/jpg"
           @change="uploadImage($event.target.files)"
-        /> -->
+        />
       </label>
     </div>
     <p>png, jpeg, jpg</p>

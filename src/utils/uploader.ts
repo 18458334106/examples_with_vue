@@ -1,6 +1,6 @@
 import * as qiniu from 'qiniu-js';
 // @ts-ignore
-import CryptoJS from 'crypto-js'
+import * as CryptoJS from 'crypto-js'
 
 // 请求接口上传图片
 export function uploadFile(file: File) {

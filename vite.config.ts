@@ -9,6 +9,7 @@ export default defineConfig({
       fileRegex: /.js$|.vue$|.png$|.ts$|.jpg$/
     })
   ],
+  base:'./',
   resolve:{
     alias:{
       '@':resolve(__dirname,'src')
@@ -24,6 +25,16 @@ export default defineConfig({
         changeOrigin:true,
         rewrite(path) {
           return path.replace(/^\/api/, '')
+        }
+      }
+    }
+  },
+  build:{
+    rollupOptions:{
+      external:['querystring'],
+      output:{
+        globals:{
+          querystring:'querystring'
         }
       }
     }
