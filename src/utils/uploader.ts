@@ -1,6 +1,6 @@
-import * as qiniu from 'qiniu-js';
+const qiniu = require('qiniu-js')
 // @ts-ignore
-import * as CryptoJS from 'crypto-js'
+const CryptoJS  = require('crypto-js')
 
 // 请求接口上传图片
 export function uploadFile(file: File) {

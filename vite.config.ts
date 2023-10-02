@@ -2,18 +2,13 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import requireTransform from 'vite-plugin-require-transform';
-import nodeResolve from '@rollup/plugin-node-resolve'
 export default defineConfig({
   plugins: [
     vue(),
     requireTransform({
       fileRegex: /.js$|.vue$|.png$|.ts$|.jpg$/
-    }),
-    nodeResolve({
-      preferBuiltins: true
     })
   ],
-  base:'./',
   resolve:{
     alias:{
       '@':resolve(__dirname,'src')
@@ -29,16 +24,6 @@ export default defineConfig({
         changeOrigin:true,
         rewrite(path) {
           return path.replace(/^\/api/, '')
-        }
-      }
-    }
-  },
-  build:{
-    rollupOptions:{
-      external:['querystring'],
-      output:{
-        globals:{
-          querystring:'querystring'
         }
       }
     }

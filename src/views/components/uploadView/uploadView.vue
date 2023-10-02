@@ -1,23 +1,23 @@
 <script setup>
   // @ts-ignore
-  import { uploadFile } from "../../../utils/uploader.ts";
+  // import { uploadFile } from "../../../utils/uploader.ts";
   import { onMounted } from "vue";
   import { ElMessage } from 'element-plus'
   // 上传文件
   const uploadImage = (files) => {
     if (files.length > 0) {
-      uploadFile(files[0]).subscribe({
-        next: (result) => {
-          console.log(result)
-        },
-        error: (err) => {
-          console.log(err)
+      // uploadFile(files[0]).subscribe({
+      //   next: (result) => {
+      //     console.log(result)
+      //   },
+      //   error: (err) => {
+      //     console.log(err)
   
-        },
-        complete: (e) => {
-          console.log(e)
-        },
-      });
+      //   },
+      //   complete: (e) => {
+      //     console.log(e)
+      //   },
+      // });
     }
   }
 
