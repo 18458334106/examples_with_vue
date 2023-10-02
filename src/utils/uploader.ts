@@ -1,13 +1,23 @@
-const qiniu = require('qiniu-js')
 // @ts-ignore
 const CryptoJS  = require('crypto-js')
 
+export let ak:string = ''
+export let sk:string = ''
+export let bucketname:string = ''
+
+export function init(config:any){
+    ak = config.ak
+    sk = config.sk
+    bucketname = config.bucketname
+}
+
 // 请求接口上传图片
 export function uploadFile(file: File) {
-    const uptoken = getToken('h1iZ7ssAbVt35FzE5U8J5aysGtIQqFMWx-c1paMp','PbaelH10u98QMBxlgWa6o2bEsVcYk2u-XoCRi7Yn','19857191790');
+    const uptoken = getToken(ak,sk,bucketname);
     const key = file.name;
     const config = {
         useCdnDomain: true,
+        // @ts-ignore
         region: qiniu.region.z0,
         forceDirect: true // 是否上传全部采用直传方式
     };
@@ -15,6 +25,7 @@ export function uploadFile(file: File) {
         fname: file.name,
         mimeType: ['image/png', 'image/jpeg', 'image/gif']
     };
+    // @ts-ignore
     return qiniu.upload(file, key, uptoken, putExtra, config);
 }
 // eslint-disable-next-line camelcase
