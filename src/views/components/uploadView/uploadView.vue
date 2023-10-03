@@ -1,24 +1,16 @@
 <template>
   <div class="container flexColumnCenterAll">
-    <div>
+    <div class="setting flexColumnCenterAll" @click="showQiniuSetting = true">
+      <el-icon style="font-size: 2rem;"><Tools /></el-icon>
+      <span>上传配置</span>
+    </div>
+    <div class="upload">
       <label
           class="flexColumnCenterAll"
           for="file-upload"
+          style="cursor: pointer;"
       >
-        <svg
-            class="icon"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 48 48"
-            aria-hidden="true"
-        >
-          <path
-              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-          />
-        </svg>
+        <el-icon><UploadFilled /></el-icon>
         <input
           id="file-upload"
           style="display: none;"
@@ -39,17 +31,17 @@
         ref="qiniuSettingRef"
         label-width="16%">
         <el-form-item label="AK" prop="ak">
-          <el-input v-model="qiniuSettingForm.ak" placeholder="AK" style="width: 90%;" />
+          <el-input size="large" v-model="qiniuSettingForm.ak" placeholder="AK" style="width: 90%;" />
         </el-form-item>
         <el-form-item label="SK" prop="sk">
-          <el-input v-model="qiniuSettingForm.sk" placeholder="SK" style="width: 90%;" />
+          <el-input size="large" v-model="qiniuSettingForm.sk" placeholder="SK" style="width: 90%;" />
         </el-form-item>
         <el-form-item label="Bucket" prop="bucketname">
-          <el-input v-model="qiniuSettingForm.bucketname" placeholder="Bucket" style="width: 90%;" />
+          <el-input size="large" v-model="qiniuSettingForm.bucketname" placeholder="Bucket" style="width: 90%;" />
         </el-form-item>
-        <el-form-item label-width="0%">
-          <el-button @click="showQiniuSetting = false">取消</el-button>
-          <el-button type="primary" @click="saveQiniuSetting(qiniuSettingRef)">保存</el-button>
+        <el-form-item label-width="0%" class="center">
+          <el-button size="large" @click="showQiniuSetting = false">取消</el-button>
+          <el-button size="large" type="primary" @click="saveQiniuSetting(qiniuSettingRef)">保存</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -62,17 +54,14 @@
   import { reactive,ref } from "vue";
   import { ElMessage } from 'element-plus'
   import type { FormInstance, FormRules } from 'element-plus'
+  import { UploadFilled,Tools } from '@element-plus/icons-vue'
   // 上传文件
   const uploadImage = (e:any) => {
     let files = e.target.files
-    console.log(files);
     if(ak === '' || sk === '' || bucketname === ''){
-      showQiniuSetting.value = true
-      ElMessage.error('请先配置七牛云上传配置')
+      ElMessage.error('请先点击右上角配置七牛云上传配置')
       return
     }
-    console.log(ak,sk,bucketname);
-    
     if (files.length > 0) {
       uploadFile(files[0]).subscribe({
         next: (result:any) => {
@@ -124,10 +113,23 @@
   .container {
     width: 100%;
     height: 100%;
-    .icon{
-      width: 3rem;
-      height: 3rem; 
+    position: relative;
+    .setting{
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
       cursor: pointer;
+    }
+    .upload{
+      cursor: pointer;
+      font-size: 4rem;
+    }
+  }
+</style>
+<style lang="scss">
+  .center{
+    .el-form-item__content{
+      justify-content: center;
     }
   }
 </style>
