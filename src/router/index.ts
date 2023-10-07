@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import layout from "@/layout/index.vue"
+import AppMain from "@/layout/AppMain/AppMain.vue"
  
 const routes = [
     {
       path: '/',
       redirect: '/home',
-      component: layout,
+      component: AppMain,
       children:[
-        { path: '/home', component: () => import('@/views/Home/Home.vue'),hidden:true },
-        { path: '/about', component: () => import('@/views/About/About.vue'),hidden:true },
+        { path: '/home', component: () => import('@/views/Home/Home.vue'), hidden:true },
+        { path: '/about', component: () => import('@/views/About/About.vue'), hidden:true },
         {
           path:'sassStarSky',
           name:'Sass星空',

@@ -1,6 +1,6 @@
 <template>
     <div class="NavBar flexRowCenterAll">
-        <router-link class="flexRowCenterAll" to="/main/home">Home</router-link>
+        <router-link class="flexRowCenterAll" to="/">Home</router-link>
         <router-link class="flexRowCenterAll" to="/about">About</router-link>
 
         <div class="rightMenu">
