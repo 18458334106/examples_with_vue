@@ -19,10 +19,11 @@ createApp(App)
     .use(createPinia())
     .mount('#app')
 
-const setFontSize = () => {
-    let doc = document.documentElement
+export const setFontSize = () => {
+    let doc = document.documentElement;
     let fontSize = doc.clientWidth / 120 > 12 ? doc.clientWidth / 120 : 12
-    doc.style.fontSize = fontSize + 'px'
+    doc.style.fontSize = fontSize + 'px';
+    return fontSize
 }
 
 setFontSize()

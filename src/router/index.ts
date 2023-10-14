@@ -33,6 +33,21 @@ const routes = [
           path:'gridAnimation',
           name:'宫格hover动画',
           component: ()=>import('@/views/components/gridAnimation.vue'),
+        },
+        {
+          path:'cssFilter',
+          name:'CSS滤镜效果',
+          component: ()=>import('@/views/components/cssFilter.vue')
+        },
+        {
+          path:'imgColorThief',
+          name:'图片调色盘',
+          component: ()=>import('@/views/components/imgColorThief.vue')
+        },
+        {
+          path:'waterFull',
+          name:'纯CSS瀑布流布局',
+          component: ()=>import('@/views/components/waterFull.vue')
         }
       ]
     }
