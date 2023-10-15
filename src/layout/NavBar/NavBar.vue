@@ -1,5 +1,9 @@
 <template>
     <div class="NavBar flexRowCenterAll">
+        <div class="leftMenu">
+            <a href="https://examples-with-react.vercel.app" target="_self"> React版本 </a>
+        </div>
+
         <router-link class="flexRowCenterAll" to="/">Home</router-link>
         <router-link class="flexRowCenterAll" to="/about">About</router-link>
 
@@ -90,6 +94,10 @@
         .router-link-active{
             color: red;
             transition: all .3s;
+        }
+        .leftMenu{
+            position: absolute;
+            left: 2rem;
         }
         .rightMenu{
             position: absolute;
