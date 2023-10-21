@@ -9,6 +9,7 @@ const routes = [
       children:[
         { path: '/home', component: () => import('@/views/Home/Home.vue'), hidden:true },
         { path: '/about', component: () => import('@/views/About/About.vue'), hidden:true },
+        { path: '/msg', component: () => import('@/views/Message/Message.vue'), hidden:true },
         {
           path:'sassStarSky',
           name:'Sass星空',

@@ -8,7 +8,8 @@ const userStore = defineStore('userStore',{
     token: getToken(),
     name: '',
     avatar: '',
-    showLogin: false
+    showLogin: false,
+    userId:null
   }),
   actions:{
     login(data:any) {
@@ -31,6 +32,7 @@ const userStore = defineStore('userStore',{
           }
           this.name = res.name
           this.avatar = res.avatar || null
+          this.userId = res.id
           resolve(res)
         }).catch(error => {
           reject(error)

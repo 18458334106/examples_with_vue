@@ -4,7 +4,7 @@ import userStore from './store/user'
 import { ElMessage } from 'element-plus'
 import { storeToRefs } from 'pinia'
 
-const whiteList = ['/home','/about']
+const whiteList = ['/home','/about','/msg']
 router.beforeEach(async(to, from, next) => {
     const hasToken = getToken()
     const store = userStore()

@@ -4,8 +4,9 @@
             <a href="https://examples-with-react.vercel.app" target="_self"> React版本 </a>
         </div>
 
-        <router-link class="flexRowCenterAll" to="/">Home</router-link>
+        <router-link class="flexRowCenterAll" to="/home">Home</router-link>
         <router-link class="flexRowCenterAll" to="/about">About</router-link>
+        <router-link class="flexRowCenterAll" to="/msg">Message</router-link>
 
         <div class="rightMenu">
             <span v-if="!name" @click="showLoginView">登陆 / 注册</span>
