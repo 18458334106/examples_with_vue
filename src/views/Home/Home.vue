@@ -31,14 +31,15 @@
 <style lang="scss" scoped>
     .examples {
         width: 100%;
-        height: 100%;
         padding: 2rem;
+        flex-wrap: wrap;
         .example{
             width: 8rem;
             height: 8rem;
             border: 1px solid #000;
             margin-right: 1rem;
-            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            &:last-child{ margin-right: 0; }
             position: relative;
             cursor: pointer;
             border-radius: .5rem;

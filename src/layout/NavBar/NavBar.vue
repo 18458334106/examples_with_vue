@@ -86,7 +86,8 @@
         box-shadow: 0 0 16px #b8b8b8;
         position: relative;
         a{
-            width: 8em;
+            width: 4em;
+            margin: 0 1em;
             height: 100%;
             font-size: 1rem;
             color: black;
@@ -98,11 +99,11 @@
         }
         .leftMenu{
             position: absolute;
-            left: 2rem;
+            left: 1rem;
         }
         .rightMenu{
             position: absolute;
-            right: 2rem;
+            right: 1rem;
         }
         .loginView{
             position: fixed;
