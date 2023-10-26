@@ -32,14 +32,19 @@
     .examples {
         width: 100%;
         padding: 2rem;
+        justify-content: space-between;
+        justify-items: flex-start;
         flex-wrap: wrap;
+        &::after{
+            content: '';
+            width: 8rem;
+            height: 8rem;
+        }
         .example{
             width: 8rem;
             height: 8rem;
             border: 1px solid #000;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
-            &:last-child{ margin-right: 0; }
+            margin: 0 0rem 1rem 0rem;
             position: relative;
             cursor: pointer;
             border-radius: .5rem;
