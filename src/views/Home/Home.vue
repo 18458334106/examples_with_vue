@@ -33,7 +33,6 @@
         width: 100%;
         padding: 2rem;
         justify-content: space-between;
-        justify-items: flex-start;
         flex-wrap: wrap;
         &::after{
             content: '';
