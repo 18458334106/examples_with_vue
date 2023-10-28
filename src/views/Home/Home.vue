@@ -32,18 +32,13 @@
     .examples {
         width: 100%;
         padding: 2rem;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex-wrap: wrap;
-        &::after{
-            content: '';
-            width: 8rem;
-            height: 8rem;
-        }
         .example{
             width: 8rem;
             height: 8rem;
             border: 1px solid #000;
-            margin: 0 0rem 1rem 0rem;
+            margin: 0 auto 1rem auto;
             position: relative;
             cursor: pointer;
             border-radius: .5rem;
