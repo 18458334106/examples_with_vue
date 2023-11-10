@@ -6,7 +6,7 @@
 
 <script setup>
     import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
-    const socket = io("http://flask.vercel.app/chat");
+    const socket = io("https://flask-py.vercel.app/chat");
 
     socket.on("connect", () => {
         console.log(socket.connected); // true
