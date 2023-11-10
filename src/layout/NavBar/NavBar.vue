@@ -7,6 +7,7 @@
         <router-link class="flexRowCenterAll" to="/home">Home</router-link>
         <router-link class="flexRowCenterAll" to="/about">About</router-link>
         <router-link class="flexRowCenterAll" to="/msg">Message</router-link>
+        <router-link class="flexRowCenterAll" to="/chat">Chat</router-link>
 
         <div class="rightMenu">
             <span v-if="!name" @click="showLoginView">登陆 / 注册</span>
