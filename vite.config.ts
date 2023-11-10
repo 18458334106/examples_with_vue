@@ -20,10 +20,10 @@ export default defineConfig({
     open:true,
     proxy:{
       '/api':{
-        target:'http://127.0.0.1:5000',
+        target:'https://flask-py.vercel.app',
         changeOrigin:true,
         rewrite(path) {
-          return path.replace(/^\/api/, '')
+          return path.replace(/^\/api/, '/')
         }
       }
     }
