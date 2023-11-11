@@ -13,7 +13,8 @@
             <span v-if="!name" @click="showLoginView">登陆 / 注册</span>
             <div class="flexRowCenterAll" v-else>
                 <span> {{ name }} </span>
-                <img :src="require('https://gd-hbimg.huaban.com/d84daecd9a8c747e7561d7d1e836a957ebc66607557e-dAZQYo')" alt="">
+                <img :src="require('@/assets/avatar.png')"
+                    alt="" crossorigin="anonymous">
             </div>
         </div>
 
@@ -122,8 +123,9 @@
             line-height: 50px;
             font-size: 1.2rem;
             img{
-                width: 2rem;
-                height: 2rem;
+                width: 3rem;
+                height: 3rem;
+                border-radius: .25rem;
                 margin: 0 0 0 1rem;
             }
         }
