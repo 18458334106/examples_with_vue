@@ -16,6 +16,7 @@
                         <div class="username ellipsis">
                             {{ item.username }}
                         </div>
+                        <div v-if="item.unread" class="dot"></div>
                     </div>
                 </div>
                 <div v-else class="empty flexColumnCenterAll">空空如也</div>
@@ -23,7 +24,7 @@
             <div class="chatDetail">
                 <div class="chatDetailView" v-if="chatDetail && chatDetail.username">
                     <div class="chatDetailHeader flexRow">{{ chatDetail.username }}</div>
-                    <div class="chatDetailRecode">
+                    <div class="chatDetailRecode" @scroll="scrollFunc">
                         <div class="recodeItem flexRow" v-for="item in chatDetail.recode">
                             <div class="recodeDetail flexRow" v-if="item.userId === chatDetail.userId">
                                 <div class="userAvatar" style="margin: 0 1rem 0 0;">
@@ -86,8 +87,8 @@
     let socket;
     const _userStore = userStore()
     const initSocket = () => {
-        socket = io("http://127.0.0.1:5001/chat")
-        socket.on("connect", () => { 
+        socket = io("https://flask-py.vercel.app/chat")
+        socket.on("connect", () => {
             console.log(`连接socket服务器:${socket.connected}`);
         });
         socket.on("disconnect", () => { console.log(`断开socket服务器:${socket.connected}`); });
@@ -110,13 +111,15 @@
                     if(i.userId === userId_msg){
                         chatList.value[index].recode.push(msg)
                         type = true
+                        i.unread = true
                     }
                 })
                 if(!type){
                     chatList.value.push({
                         userId:userId_msg,
                         username:msg.username,
-                        recode:[msg]
+                        recode:[msg],
+                        unread:true
                     })
                 }
             }
@@ -139,7 +142,7 @@
                 chatContent: value
             })
             document.getElementById("chatDetailTextarea").value = ''
-
+            chatDetailRecodeScrollToBottom()
         }else{
             ElMessage.error("不能发送空消息！");
         }
@@ -147,14 +150,19 @@
 
     const chatDetailRecodeScrollToBottom = () => {
         let ele = document.getElementsByClassName('chatDetailRecode')
-        console.log(ele);
-        ele[0].scrollTo(0,ele[0].scrollHeight)
+        setTimeout(()=>{
+            ele[0].scrollTo(0,ele[0].scrollHeight)
+        },500)
+    }
+
+    const scrollFunc = (e) => {
+        console.log(e)
     }
 
     const chatList = ref([]);
     const chatDetail = ref(null);
     const chooseUser = (item) => {
-        console.log(item);
+        item.unread = false
         chatDetail.value = item;
         let { userId,name } = storeToRefs(_userStore)
         queryChatRecode({
@@ -194,7 +202,6 @@
             username: obj.name,
             recode:[]
         })
-        console.log(chatList.value);
         dialogVisible.value = false
     }
 
@@ -213,7 +220,7 @@
             height: 100%;
             border-right: 1px solid #eee;
             .createChat{
-                height: 10%;
+                height: 4rem;
                 font-size: 1.2rem;
                 border-bottom: 1px solid #eee;
                 cursor: pointer;
@@ -226,9 +233,10 @@
             }
             .list{
                 width: 100%;
-                height: calc(90% - 1px);
+                height: calc(100% - 4rem);
                 font-size: 1.2rem;
                 color: #000;
+                transition: all .3s;
                 .listItem{
                     width: 100%;
                     height: 6rem;
@@ -236,6 +244,7 @@
                     padding: 0 2rem;
                     align-items: center;
                     cursor: pointer;
+                    position: relative;
                     .userAvatar{
                         width: 4rem;
                         height: 4rem;
@@ -249,6 +258,14 @@
                     }
                     .username{
                         width: calc(100% - 5rem);
+                    }
+                    .dot{
+                        position: absolute;
+                        right: 2rem;
+                        width: 1rem;
+                        height: 1rem;
+                        background: red;
+                        border-radius: 50%;
                     }
                 }
             }
@@ -276,7 +293,7 @@
                     align-items: center;
                     font-size: 2rem;
                     overflow-y: scroll;
-                    box-sizing: border-box;
+                    transition: all .5s;
                     .recodeItem{
                         width: 100%;
                         font-size: 1.2rem;
@@ -350,6 +367,9 @@
     .userList{
         width: 100%;
         margin-top: 1rem;
+        max-height: calc(50rem);
+        overflow-y: scroll;
+        transition: all .3s;
         .user{
             align-items: center;
             height: 8rem;
