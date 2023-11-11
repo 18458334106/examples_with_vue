@@ -21,7 +21,7 @@
                 <div v-else class="empty flexColumnCenterAll">空空如也</div>
             </div>
             <div class="chatDetail">
-                <div class="chatDetailView" v-if="chatDetail.username">
+                <div class="chatDetailView" v-if="chatDetail && chatDetail.username">
                     <div class="chatDetailHeader flexRow">{{ chatDetail.username }}</div>
                     <div class="chatDetailRecode">
                         <div class="recodeItem flexRow" v-for="item in chatDetail.recode">
@@ -47,7 +47,7 @@
                     <div class="chatDetailInput">
                         <textarea placeholder="请输入……" id="chatDetailTextarea" cols="30" rows="10"></textarea>
                         <div class="submit flexRow">
-                            <el-button type="success">发送</el-button>
+                            <el-button type="success" @click="send">发送</el-button>
                         </div>
                     </div>
                 </div>
@@ -58,42 +58,54 @@
 
 <script setup>
     import { ref } from "vue";
+    import { ElMessage } from "element-plus";
     import { CirclePlus } from "@element-plus/icons-vue";
     import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
-    const socket = io("http://127.0.0.1:5001/chat");
-
-    socket.on("connect", () => {
-        console.log(socket.connected); // true
-    });
-
-    socket.on("disconnect", () => {
-        console.log(socket.connected); // false
-    });
-
-    socket.on("message event", (msg) => {
-        console.log("新消息",msg); // false
-    });
-
+    import userStore from '@/store/user'
+    import { storeToRefs } from "pinia";
+    let socket;
+    const _userStore = userStore()
+    const initSocket = () => {
+        socket = io("http://127.0.0.1:5001/chat")
+        socket.on("connect", () => { console.log(`连接socket服务器:${socket.connected}`); });
+        socket.on("disconnect", () => { console.log(`断开socket服务器:${socket.connected}`); });
+        socket.on("message", (msg) => { 
+            console.log("新消息",msg);
+            chatDetail.value.recode.push({
+                userId:chatDetail.value.userId,
+                username: chatDetail.value.username,
+                content: msg
+            })
+         });
+    }
     const send = () => {
-        socket.emit("message event", "Hello World_message event!");
-        socket.emit("message", "Hello World!");
+        let value = document.getElementById("chatDetailTextarea").value;
+        let { userId,name } = storeToRefs(_userStore)
+        if(value.length > 0){
+            socket.emit("message",{
+                userId:userId.value,
+                username: name.value,
+                toUserId: chatDetail.value.userId,
+                toUsername: chatDetail.value.username,
+                chatContent: value
+            });
+            chatDetail.value.recode.push({
+                userId:userId.value,
+                username: name.value,
+                content: value
+            })
+            document.getElementById("chatDetailTextarea").value = ''
+        }else{
+            ElMessage.error("不能发送空消息！");
+        }
     }
 
-    const chatList = ref([
-        { userId:2,username:'test',recode:null }
-    ]);
-
+    const chatList = ref([]);
+    const chatDetail = ref(null);
     const chooseUser = (item) => {
-        console.log(item);
+        chatDetail.value = item;
+        initSocket()
     }
-    const chatDetail = ref({
-        userId:2,
-        username:'test',
-        recode:[
-            {userId:2,username:'test',content:'你好，很高兴见到你'},
-            {userId:1,username:'admin',content:'你好，我也是'},
-        ]
-    });
 </script>
 <style lang="scss" scoped>
     .chatView{
@@ -173,6 +185,7 @@
                         width: 100%;
                         font-size: 1.2rem;
                         position: relative;
+                        margin-bottom: 1rem;
                         .recodeDetail{
                             width: 100%;
                             .userAvatar{
