@@ -22,7 +22,7 @@ createApp(App)
 
 export const setFontSize = () => {
     let doc = document.documentElement;
-    let fontSize = doc.clientWidth / 120 > 12 ? doc.clientWidth / 120 : 12
+    let fontSize = doc.clientWidth / 120 > 10 ? doc.clientWidth / 120 : 10
     doc.style.fontSize = fontSize + 'px';
     return fontSize
 }

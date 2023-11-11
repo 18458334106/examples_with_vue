@@ -1,35 +1,44 @@
 <template>
-    <div class="NavBar flexRowCenterAll">
-        <div class="leftMenu">
+    <div class="NavBar flexRow">
+        <!-- <div class="leftMenu">
             <a href="https://examples-with-react.vercel.app" target="_self"> React版本 </a>
-        </div>
+        </div> -->
 
-        <router-link class="flexRowCenterAll" to="/home">Home</router-link>
-        <router-link class="flexRowCenterAll" to="/about">About</router-link>
-        <router-link class="flexRowCenterAll" to="/msg">Message</router-link>
-        <router-link class="flexRowCenterAll" to="/chat">Chat</router-link>
+        <router-link class="flexRowCenterAll" to="/home">首页</router-link>
+        <router-link class="flexRowCenterAll" to="/msg">留言</router-link>
+        <router-link class="flexRowCenterAll" to="/chat">聊天</router-link>
+        <router-link class="flexRowCenterAll" to="/about">关于我</router-link>
 
         <div class="rightMenu">
             <span v-if="!name" @click="showLoginView">登陆 / 注册</span>
-            <span v-else> {{ name }} </span>
+            <div class="flexRowCenterAll" v-else>
+                <span> {{ name }} </span>
+                <img :src="require('https://gd-hbimg.huaban.com/d84daecd9a8c747e7561d7d1e836a957ebc66607557e-dAZQYo')" alt="">
+            </div>
         </div>
 
         <transition name="el-fade-in-linear">
             <div class="loginView flexRowCenterAll" v-if="showLogin" @click.self="showLogin = false">
-                <div class="loginMain flexColumnCenterAll">
-                    <h1 class="loginTitle">Login In</h1>
-                    <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef">
+                <div class="loginMain flexColumn">
+                    <h1 class="loginTitle">Sign In</h1>
+                    <span class="loginText">
+                        Sign in to your account
+                    </span>
+                    <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef"
+                        label-position="top">
+                        <span class="formLabel">Username</span>
                         <el-form-item prop="username">
-                            <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" size="large" :prefix-icon="User"></el-input>
+                            <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" :prefix-icon="User"></el-input>
                         </el-form-item>
+                        <span class="formLabel">Password</span>
                         <el-form-item prop="password">
-                            <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" size="large" :prefix-icon="Lock"></el-input>
+                            <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" :prefix-icon="Lock"></el-input>
                         </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="login(loginFormRef)" size="large">登陆</el-button>
-                        </el-form-item>
+                        <div class="submit flexRow">
+                            <el-button type="primary" size="small" @click="login(loginFormRef)">登陆</el-button>
+                        </div>
                     </el-form>
-                    <span class="defaultAuth">用户名：admin 密码：123456</span>
+                    <span class="defaultAuth flexRowCenterAll">用户名：admin 密码：123456</span>
                 </div>
             </div>
         </transition>
@@ -77,6 +86,11 @@
             }
         })
     }
+
+    window.addEventListener('storage',(e)=>{
+        console.log(e);
+        
+    })
 </script>
 
 <style lang="scss" scoped>
@@ -88,9 +102,8 @@
         position: relative;
         a{
             width: 4em;
-            margin: 0 1em;
             height: 100%;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: black;
             text-decoration: none;
         }
@@ -104,7 +117,15 @@
         }
         .rightMenu{
             position: absolute;
-            right: 1rem;
+            right: 2rem;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.2rem;
+            img{
+                width: 2rem;
+                height: 2rem;
+                margin: 0 0 0 1rem;
+            }
         }
         .loginView{
             position: fixed;
@@ -115,29 +136,52 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 2000;
             .loginMain{
-                width: 25rem;
-                height: 25rem;
+                width: 40rem;
+                height: 30rem;
                 background: white;
                 padding: 2rem;
-                border-radius: 1rem;
+                border-radius: .5rem;
                 .loginTitle{
-                    margin: 2rem 0;
+                    width: 100%;
+                    height: 3rem;
+                    text-align: right;
+                }
+                .loginText{
+                    margin: 1rem 0;
+                    font-size: 1rem;
+                    color: #687076;
+                    text-align: right;
                 }
                 .el-form{
                     width: 100% !important;
-                    height: 100% !important;
-                    padding: 0 2rem;
+                    height: 18rem !important;
+                    overflow: hidden;
+                    .formLabel{
+                        font-size: 1rem;
+                        height: auto;
+                        color: #687076;
+                    }
                     .el-form-item{
+                        height: 5rem;
+                        margin-bottom: unset !important;
+                        .el-input{
+                            height: 100% !important;
+                        }
+                    }
+                    .submit{
                         width: 100% !important;
-                        .el-input{ width: 100% !important; }
-                        .el-button{ width: 100% !important;margin: 1rem 0; }
+                        justify-content: flex-end !important;
+                        margin-bottom: unset;
+                        height: 4rem;
+                        .el-button{
+                            width: 8rem;
+                            height: 3rem !important;
+                        }
                     }
                 }
                 .defaultAuth{
-                    width: 100%;
-                    text-align: center;
-                    color: #b8b8b8;
-                    font-size: 1rem;
+                    height: 2rem;
+                    color: #687076;
                 }
             }
         }
