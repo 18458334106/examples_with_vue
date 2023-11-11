@@ -14,3 +14,19 @@ export const getInfo = () => {
         method: 'get'
     })
 }
+
+export const queryUserList = (params:any) => {
+    return request({
+        url: '/user/list',
+        method: 'get',
+        params
+    })
+}
+
+export const queryChatRecode = (data:any) => {
+    return request({
+        url: '/chat/recode',
+        method: 'post',
+        data
+    })
+}
