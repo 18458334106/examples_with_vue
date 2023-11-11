@@ -39,7 +39,7 @@
                             <el-button type="primary" size="small" @click="login(loginFormRef)">登陆</el-button>
                         </div>
                     </el-form>
-                    <span class="defaultAuth flexRowCenterAll">用户名：admin 密码：123456</span>
+                    <span class="defaultAuth flexRow">用户名：admin 密码：123456</span>
                 </div>
             </div>
         </transition>
@@ -101,6 +101,7 @@
         padding: 0 2rem;
         box-shadow: 0 0 16px #b8b8b8;
         position: relative;
+        align-items: center;
         a{
             width: 4em;
             height: 100%;
@@ -167,7 +168,7 @@
                         height: 5rem;
                         margin-bottom: unset !important;
                         .el-input{
-                            height: 100% !important;
+                            height: 3rem !important;
                         }
                     }
                     .submit{
