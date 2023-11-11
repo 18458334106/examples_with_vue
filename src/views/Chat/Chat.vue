@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="chatDetailInput">
-                        <textarea placeholder="请输入……" id="chatDetailTextarea" cols="30" rows="10"></textarea>
+                        <textarea placeholder="请输入……" id="chatDetailTextarea" cols="30" rows="10" @focus="inputFocus"></textarea>
                         <div class="submit flexRow">
                             <el-button type="success" @click="send">发送</el-button>
                         </div>
@@ -87,7 +87,8 @@
     let socket;
     const _userStore = userStore()
     const initSocket = () => {
-        socket = io("https://flask-py.vercel.app/chat")
+        // socket = io("https://flask-py.vercel.app/chat")
+        socket = io("http://127.0.0.1:5001/chat")
         socket.on("connect", () => {
             console.log(`连接socket服务器:${socket.connected}`);
         });
@@ -203,6 +204,15 @@
             recode:[]
         })
         dialogVisible.value = false
+    }
+
+    const inputFocus = () => {
+        let userId = chatDetail.value.userId
+        chatList.value.forEach(i=>{
+            if(i.userId == userId){
+                i.unread = false
+            }
+        })
     }
 
     onMounted(()=>{
