@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-    import { ref } from "vue";
+    import { onMounted, ref } from "vue";
     import { ElMessage } from "element-plus";
     import { CirclePlus,Search } from "@element-plus/icons-vue";
     import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
@@ -98,7 +98,29 @@
                 username: chatDetail.value.username,
                 chatContent: msg
             })
-         });
+        });
+        socket.on("message update",(msg)=>{
+            console.log("消息更新",msg);
+            let userId_msg = msg.userId
+            let toUserId_msg = msg.toUserId
+            let type = false
+            let { userId } = storeToRefs(_userStore)
+            if(userId.value === toUserId_msg){
+                chatList.value.map((i,index)=>{
+                    if(i.userId === userId_msg){
+                        chatList.value[index].recode.push(msg)
+                        type = true
+                    }
+                })
+                if(!type){
+                    chatList.value.push({
+                        userId:userId_msg,
+                        username:msg.username,
+                        recode:[msg]
+                    })
+                }
+            }
+        })
     }
     const send = () => {
         let value = document.getElementById("chatDetailTextarea").value;
@@ -117,9 +139,16 @@
                 chatContent: value
             })
             document.getElementById("chatDetailTextarea").value = ''
+
         }else{
             ElMessage.error("不能发送空消息！");
         }
+    }
+
+    const chatDetailRecodeScrollToBottom = () => {
+        let ele = document.getElementsByClassName('chatDetailRecode')
+        console.log(ele);
+        ele[0].scrollTo(0,ele[0].scrollHeight)
     }
 
     const chatList = ref([]);
@@ -135,8 +164,8 @@
             toUsername: item.username
         }).then(res=>{
             chatDetail.value.recode = res
+            chatDetailRecodeScrollToBottom()
         })
-        initSocket()
     }
 
 
@@ -168,6 +197,10 @@
         console.log(chatList.value);
         dialogVisible.value = false
     }
+
+    onMounted(()=>{
+        initSocket()
+    })
 </script>
 <style lang="scss" scoped>
     .chatView{
@@ -198,7 +231,7 @@
                 color: #000;
                 .listItem{
                     width: 100%;
-                    height: 12%;
+                    height: 6rem;
                     border-bottom: 1px solid #eee;
                     padding: 0 2rem;
                     align-items: center;
@@ -243,6 +276,7 @@
                     align-items: center;
                     font-size: 2rem;
                     overflow-y: scroll;
+                    box-sizing: border-box;
                     .recodeItem{
                         width: 100%;
                         font-size: 1.2rem;
