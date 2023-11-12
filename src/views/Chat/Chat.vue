@@ -87,8 +87,8 @@
     let socket;
     const _userStore = userStore()
     const initSocket = () => {
-        // socket = io("https://flask-py.vercel.app/chat")
-        socket = io("http://127.0.0.1:5001/chat")
+        socket = io("https://flask-py.vercel.app/chat")
+        // socket = io("http://127.0.0.1:5001/chat")
         socket.on("connect", () => {
             console.log(`连接socket服务器:${socket.connected}`);
         });
