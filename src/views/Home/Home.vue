@@ -1,8 +1,7 @@
 <template>
     <div class="container">
-        <div class="examples flexRow">
+        <div class="examples">
             <div class="example" v-for="item in examples" @click="jumpTo(item.path)">
-                <img src="../../assets/SassStarSky.jpg" alt="" srcset="">
                 <span class="ellipsis">{{ item.name }}</span>
             </div>
         </div>
@@ -32,31 +31,40 @@
     .examples {
         width: 100%;
         padding: 2rem;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        transition: all .5s;
         .example{
             width: 8rem;
             height: 8rem;
-            border: 1px solid #000;
-            margin: 0 auto 1rem auto;
             position: relative;
             cursor: pointer;
             border-radius: .5rem;
-            img{
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                border-radius: .5rem;
+            background: url('../../assets/SassStarSky.jpg') no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            float: left;
+            transition: all .5s;
+            margin: 0 1rem 1rem 0;
+            &:hover{ transform: scale(1.2); }
+            &:last-child{ margin-right: 0; }
+            animation: toBig 1s ease-in-out;
+            @keyframes toBig {
+                from{
+                    transform: scale(0);
+                }
+                to{
+                    transform: scale(1);
+                }
             }
             span{
                 position: absolute;
-                bottom: .5rem;
-                left: .5rem;
+                bottom: 0rem;
+                left: 0;
                 color: white;
                 font-size: .75rem;
-                width: calc(100% - 1rem);
+                padding: .5rem 1rem;
+                width: 100%;
+                border-radius: .5rem;
             }
-            &:hover{ transform: scale(1.2);transition: all .3s; }
         }
     }
 </style>

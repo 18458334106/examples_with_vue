@@ -50,6 +50,11 @@ const routes = [
           path:'waterFull',
           name:'纯CSS瀑布流布局',
           component: ()=>import('@/views/components/waterFull.vue')
+        },
+        {
+          path:'infiniteParallaxScrolling',
+          name:'无限视差滚动',
+          component: ()=>import('@/views/components/infiniteParallaxScrolling.vue')
         }
       ]
     }

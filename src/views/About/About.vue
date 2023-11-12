@@ -21,8 +21,20 @@
 </script>
 
 <style lang="scss" scoped>
+    @keyframes toBig {
+        from{
+            transform: scale(0);
+        }
+        to{
+            transform: scale(1);
+        }
+    }
+    h1{
+        animation: toBig 1s ease-in-out;
+    }
     .infos{
         margin: 2rem 0;
+        animation: toBig 1s ease-in-out;
         .item{
             margin: 0 2rem;
             img{
