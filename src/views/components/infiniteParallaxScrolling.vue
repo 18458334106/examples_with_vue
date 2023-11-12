@@ -67,7 +67,7 @@
         })
     })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .scroll-container {
         height: 100vh;
         position: relative;

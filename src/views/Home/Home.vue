@@ -42,7 +42,7 @@
             background-size: cover;
             overflow: hidden;
             float: left;
-            transition: all .5s;
+            transition: all .3s;
             margin: 0 1rem 1rem 0;
             &:hover{ transform: scale(1.2); }
             &:last-child{ margin-right: 0; }

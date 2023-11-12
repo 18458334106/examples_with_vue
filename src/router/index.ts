@@ -55,6 +55,11 @@ const routes = [
           path:'infiniteParallaxScrolling',
           name:'无限视差滚动',
           component: ()=>import('@/views/components/infiniteParallaxScrolling.vue')
+        },
+        {
+          path:'snow',
+          name:'飘雪',
+          component: ()=>import('@/views/components/snow.vue')
         }
       ]
     }
