@@ -102,6 +102,7 @@
         box-shadow: 0 0 16px #b8b8b8;
         position: relative;
         align-items: center;
+        z-index: 1000;
         a{
             width: 4em;
             height: 100%;

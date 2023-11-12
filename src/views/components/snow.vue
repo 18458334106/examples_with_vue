@@ -66,14 +66,17 @@
     }
 </script>
 <style lang="scss" scoped>
-    .snowBg,canvas{
-        width: 100%;
-        height: 100%;
-    }
-    canvas{
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 20;
+    .container{
+        overflow: hidden;
+        .snowBg,canvas{
+            width: 100%;
+            height: 100%;
+        }
+        canvas{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+        }
     }
 </style>
