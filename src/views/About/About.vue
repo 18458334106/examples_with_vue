@@ -14,7 +14,7 @@
 <script lang="ts" setup>
     const arr = [
         { imgUrl:require('../../assets/about/gitee.png'), title:'Gitee', link:'https://gitee.com/zhaojc-077399' },
-        { imgUrl:require('../../assets/about/github.png'), title:'GitHub', link:'https://github.com/19857191790' },
+        { imgUrl:require('../../assets/about/github.png'), title:'GitHub', link:'https://github.com/18458334106' },
         { imgUrl:require('../../assets/about/csdn.png'), title:'CSDN', link:'https://blog.csdn.net/weixin_59685936' },
         { imgUrl:require('../../assets/about/blog.png'), title:'blog', link:'https://blog-1790.vercel.app/' }
     ]
