@@ -100,9 +100,12 @@
         height: 50px;
         padding: 0 2rem;
         box-shadow: 0 0 16px #b8b8b8;
-        position: relative;
+        position: sticky;
+        top: 0;
         align-items: center;
         z-index: 1000;
+        transition: all .3s;
+        background: white;
         a{
             width: 4em;
             height: 100%;
