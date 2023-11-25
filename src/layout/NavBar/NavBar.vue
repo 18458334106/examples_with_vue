@@ -27,12 +27,10 @@
                     </span>
                     <el-form :model="loginForm" :rules="loginFormRules" ref="loginFormRef"
                         label-position="top">
-                        <span class="formLabel">Username</span>
-                        <el-form-item prop="username">
+                        <el-form-item label="Username" prop="username">
                             <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" :prefix-icon="User"></el-input>
                         </el-form-item>
-                        <span class="formLabel">Password</span>
-                        <el-form-item prop="password">
+                        <el-form-item label="Password" prop="password">
                             <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" :prefix-icon="Lock"></el-input>
                         </el-form-item>
                         <div class="submit flexRow">
@@ -163,13 +161,8 @@
                     width: 100% !important;
                     height: 18rem !important;
                     overflow: hidden;
-                    .formLabel{
-                        font-size: 1rem;
-                        height: auto;
-                        color: #687076;
-                    }
                     .el-form-item{
-                        height: 5rem;
+                        height: 6rem;
                         margin-bottom: unset !important;
                         .el-input{
                             height: 3rem !important;
@@ -178,6 +171,7 @@
                     .submit{
                         width: 100% !important;
                         justify-content: flex-end !important;
+                        align-items: center;
                         margin-bottom: unset;
                         height: 4rem;
                         .el-button{
@@ -188,9 +182,21 @@
                 }
                 .defaultAuth{
                     height: 2rem;
+                    line-height: 2rem;
                     color: #687076;
                 }
             }
         }
+    }
+</style>
+<style lang="scss">
+    .el-form--default.el-form--label-top .el-form-item .el-form-item__label {
+        margin-bottom: 0 !important;
+        line-height: 0 !important;
+    }
+    .el-form-item__label{
+        all: unset !important;
+        line-height: unset !important;
+        height: unset !important;
     }
 </style>
