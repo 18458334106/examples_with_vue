@@ -58,8 +58,13 @@ const routes = [
         },
         {
           path:'snow',
-          name:'飘雪',
+          name:'飘雪[canvas]',
           component: ()=>import('@/views/components/snow.vue')
+        },
+        {
+          path:'meteor',
+          name:'流星[canvas]',
+          component: ()=>import('@/views/components/meteor.vue')
         }
       ]
     }
