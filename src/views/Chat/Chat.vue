@@ -56,7 +56,11 @@
         </div>
 
         <el-dialog title="新建聊天" v-model="dialogVisible">
-            <el-input v-model="username" placeholder="账号搜索" :prefix-icon="Search"></el-input>
+            <el-input v-model="username" placeholder="账号搜索" :prefix-icon="Search">
+                <template #append>
+                    <el-button class="searchBtn" type="primary" :icon="Search" />
+                </template>
+            </el-input>
             <div class="userList flexColumn">
                 <div class="user flexRow" v-for="item in userList">
                     <div class="userAvatar" style="margin: 0 1rem 0 0;">
@@ -373,6 +377,13 @@
     /* 隐藏滚动条滑块 */
     ::-webkit-scrollbar-thumb {
         background-color: transparent;
+    }
+    .searchBtn{
+        width: 6rem;
+        background: #409eff !important;
+        color: white !important;
+        font-weight: bolder !important;
+        border-radius: 0 4px 4px 0;
     }
     .userList{
         width: 100%;

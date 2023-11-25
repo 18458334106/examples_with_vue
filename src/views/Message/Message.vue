@@ -83,6 +83,7 @@
                 border: 1px solid #dcdfe6;
                 padding: 1rem;
                 margin-bottom: 1rem;
+                transition: all .3s;
                 &:last-child{ margin-bottom: 0; }
                 .item-username{
                     color: #409EFF;
