@@ -28,7 +28,7 @@
                 r: Math.random() * 4 + 1,
             })
         }
-        setInterval(draw, 1000)
+        setInterval(draw, 1)
     })
 
     const move = () => {
@@ -42,7 +42,6 @@
                 snow.x = 0
             }
         })
-        requestAnimationFrame(move)
     }
 
     const draw = () => {
@@ -61,8 +60,8 @@
             })
             ctx.fill()
             ctx.closePath()
-            move()
         })
+        move()
     }
 </script>
 <style lang="scss" scoped>
