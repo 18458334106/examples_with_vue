@@ -56,7 +56,6 @@
     const { showLogin } = storeToRefs(store)
     const showLoginView = () => {
         showLogin.value = true;
-        console.log(showLogin.value);
     }
     interface LoginForm {
         username: string;
@@ -85,11 +84,6 @@
             }
         })
     }
-
-    window.addEventListener('storage',(e)=>{
-        console.log(e);
-        
-    })
 </script>
 
 <style lang="scss" scoped>

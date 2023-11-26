@@ -5,10 +5,9 @@ import { ElMessage } from 'element-plus'
 import { storeToRefs } from 'pinia'
 
 const whiteList = ['/home','/about','/msg']
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async(to, _from, next) => {
     const hasToken = getToken()
     const store = userStore()
-    console.log(to,from,next);
     if (hasToken) {
       if (to.path === '/login') {
         next({ path: '/' })

@@ -201,7 +201,6 @@
 
     const newChatSub = (item) => {
         let obj = JSON.parse(JSON.stringify(item))
-        console.log(obj);
         chatList.value.push({
             userId: obj.id,
             username: obj.name,
