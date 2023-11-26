@@ -8,7 +8,7 @@ const whiteList = ['/home','/about','/msg']
 router.beforeEach(async(to, from, next) => {
     const hasToken = getToken()
     const store = userStore()
-    console.log(from);
+    console.log(to,from,next);
     if (hasToken) {
       if (to.path === '/login') {
         next({ path: '/' })

@@ -10,17 +10,9 @@
 
 <script setup>
     import { ref,onMounted } from 'vue'
+    import { asyncRoutes } from '@/router';
     import { useRouter } from 'vue-router';
-
-    const examples = ref([]);
-    onMounted(() => {
-        let arr = []
-        arr = useRouter().options.routes[0].children
-        arr = JSON.parse(JSON.stringify(arr))
-        arr = arr.filter(item => !item.hidden)
-        examples.value = arr
-    })
-
+    const examples = asyncRoutes
     const router = useRouter();
     const jumpTo = (url) => {
         router.push(url);

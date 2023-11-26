@@ -1,76 +1,45 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppMain from "@/layout/AppMain/AppMain.vue"
- 
+import { getExamples } from '@/api/examples'
+import { ref } from 'vue'
+import type{ Router } from 'vue-router'
+export let asyncRoutes = ref([] as any[])
+let router:Router;
 const routes = [
-    {
-      path: '/',
-      redirect: '/home',
-      component: AppMain,
-      children:[
-        { path: '/home', component: () => import('@/views/Home/Home.vue'), hidden:true },
-        { path: '/about', component: () => import('@/views/About/About.vue'), hidden:true },
-        { path: '/msg', component: () => import('@/views/Message/Message.vue'), hidden:true },
-        { path: '/chat', component: () => import('@/views/Chat/Chat.vue'), hidden:true },
-        {
-          path:'sassStarSky',
-          name:'Sass星空',
-          component: ()=>import('@/views/components/sassStarSky.vue'),
-        },
-        {
-          path:'particles',
-          name:'Particles',
-          component: ()=>import('@/views/components/ParticlesView/particles.vue'),
-        },
-        {
-          path:'upload',
-          name:'七牛云文件上传',
-          component: ()=>import('@/views/components/uploadView/uploadView.vue'),
-        },
-        {
-          path:'svgAnimation',
-          name:'图标动画',
-          component: ()=>import('@/views/components/svgAnimation.vue'),
-        },
-        {
-          path:'gridAnimation',
-          name:'宫格hover动画',
-          component: ()=>import('@/views/components/gridAnimation.vue'),
-        },
-        {
-          path:'cssFilter',
-          name:'CSS滤镜效果',
-          component: ()=>import('@/views/components/cssFilter.vue')
-        },
-        {
-          path:'imgColorThief',
-          name:'图片调色盘',
-          component: ()=>import('@/views/components/imgColorThief.vue')
-        },
-        {
-          path:'waterFull',
-          name:'纯CSS瀑布流布局',
-          component: ()=>import('@/views/components/waterFull.vue')
-        },
-        {
-          path:'infiniteParallaxScrolling',
-          name:'无限视差滚动',
-          component: ()=>import('@/views/components/infiniteParallaxScrolling.vue')
-        },
-        {
-          path:'snow',
-          name:'飘雪[canvas]',
-          component: ()=>import('@/views/components/snow.vue')
-        },
-        {
-          path:'meteor',
-          name:'流星[canvas]',
-          component: ()=>import('@/views/components/meteor.vue')
-        }
-      ]
-    }
+  {
+    path: '/',
+    redirect: '/home',
+    name:'all',
+    component: AppMain,
+    children:[
+      { path: '/home', component: () => import('@/views/Home/Home.vue'), hidden:true,name:'Home' },
+      { path: '/about', component: () => import('@/views/About/About.vue'), hidden:true,name:'About' },
+      { path: '/msg', component: () => import('@/views/Message/Message.vue'), hidden:true,name:'Msg' },
+      { path: '/chat', component: () => import('@/views/Chat/Chat.vue'), hidden:true,name:'Chat' },
+    ]
+  }
 ]
- 
-export default createRouter({
+
+router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+const getAsyncRoutes = async () => {
+  const data = await getExamples()
+  data.forEach((item:any) => {
+    let obj = {
+      path:item.path,
+      name:item.name,
+      component:() => import(`@/views/components/${item.path}.vue`),
+      hidden:false
+    }
+    routes[0].children.push(obj)
+    router.addRoute('all',obj)
+    asyncRoutes.value.push(obj)
+  });
+}
+
+getAsyncRoutes()
+
+export default router
