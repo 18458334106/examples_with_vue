@@ -50,7 +50,7 @@
 
 <script lang="ts" setup>
   // @ts-ignore
-  import { init,uploadFile,ak,sk,bucketname } from "../../../utils/uploader.ts";
+  import { init,uploadFile,ak,sk,bucketname } from "@/utils/uploader";
   import { reactive,ref } from "vue";
   import { ElMessage } from 'element-plus'
   import type { FormInstance, FormRules } from 'element-plus'
